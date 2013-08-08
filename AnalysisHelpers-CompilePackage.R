@@ -5,7 +5,7 @@
 rm(list=ls())
 script.dir <- "/Users/gbrookshire/Documents/programming/r/analysis_helpers/scripts/"
 scrs <- c("FilterOutliers.R", "WithinSEM.R", "merge_csvs.R",
-          "DataFrameMatrix.R", "FixFactors.R", "errbar.R")
+          "DataFrameMatrix.R", "FixFactors.R", "errbar.R", "deviation_code.R")
 
 setwd(paste(script.dir, '..', sep=''))
 

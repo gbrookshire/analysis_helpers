@@ -8,7 +8,6 @@ merge.csv <- function(dirname, outputname='all.csv', sep=',', skip=0) {
   # load it into R and then call it with the path of the directory
   # which holds the logfiles you want to merge.
   
-  print("This might sort the columns -- it's best to check that it doesn't.\n")
   setwd(dirname)
   filecont <- dir()
   # only look at the .csv’s
@@ -16,6 +15,7 @@ merge.csv <- function(dirname, outputname='all.csv', sep=',', skip=0) {
   # first make a table to hold all the data, fill with first CSV
   agg <- read.csv(filecont[1], sep=sep, skip=skip)
   filecont <- filecont[-1]
+  print(filecont[1])
   for (f in filecont) {
     print(f)   
     d <- read.csv(f, sep=sep, skip=skip)

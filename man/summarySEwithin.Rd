@@ -2,9 +2,10 @@
 \alias{summarySEwithin}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-summarySEwithin}
+Compute within-subjects standard errors
+}
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Get within-subjects standard error of the mean, count, mean, standard deviation, and confidence interval (default 95\%) for a numeric variable.
 }
 \usage{
 summarySEwithin(data = NULL, measurevar, betweenvars = NULL, withinvars = NULL, idvar = NULL, na.rm = FALSE, conf.interval = 0.95)
@@ -12,43 +13,43 @@ summarySEwithin(data = NULL, measurevar, betweenvars = NULL, withinvars = NULL, 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
-%%     ~~Describe \code{data} here~~
+a data frame.
 }
   \item{measurevar}{
-%%     ~~Describe \code{measurevar} here~~
+the name of a column that contains the variable to be summarized.
 }
   \item{betweenvars}{
-%%     ~~Describe \code{betweenvars} here~~
+a vector containing names of columns that contain grouping variables.
 }
   \item{withinvars}{
-%%     ~~Describe \code{withinvars} here~~
+a boolean that indicates whether to ignore NA's.
 }
   \item{idvar}{
 %%     ~~Describe \code{idvar} here~~
 }
   \item{na.rm}{
-%%     ~~Describe \code{na.rm} here~~
+a boolean that indicates whether to ignore NA's.
 }
   \item{conf.interval}{
-%%     ~~Describe \code{conf.interval} here~~
+the percent range of the confidence interval.
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+a data.frame that summarizes the contents of the input data. The column with the name of the dependent variable (arg: DV) gives an adjusted mean. To use the unadjusted mean (which is what you almost certainly want), use the column called <DV>.unadjusted.
+\item{<Name of your measurevar>}{an adjusted mean. You probably don't want this. Instead, use the unadjusted mean.}
+\item{<Name of your measurevar>.unadjusted}{unadjusted mean of the values in that group.}
+\item{N}{number of observations.}
+\item{se}{within-subjects standard error of the mean.}
+\item{ci}{confidence interval.}
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
-}
+Geoff adapted this function from a script taken from http://wiki.stdout.org/rcookbook/Graphs/Plotting\%20means\%20and\%20error\%20bars\%20(ggplot2)}
 \note{
 %%  ~~further notes~~
 }
@@ -56,35 +57,18 @@ summarySEwithin(data = NULL, measurevar, betweenvars = NULL, withinvars = NULL, 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+summarySE
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+dv <- rnorm(120)
+subject <- factor(rep(paste('s', 1:6), each=20))
+f.within <- factor(rep(c('a', 'b'), times=60))
+f.between <- factor(rep(c('x', 'y'), each=60))
+d <- data.frame(subject, f.within, f.between, dv)
 
-## The function is currently defined as
-function (data = NULL, measurevar, betweenvars = NULL, withinvars = NULL, 
-    idvar = NULL, na.rm = FALSE, conf.interval = 0.95) 
-{
-    data <- normDataWithin(data, idvar, measurevar, betweenvars, 
-        na.rm)
-    measureNormedVar <- paste(measurevar, "Normed", sep = "")
-    data.unadjust <- summarySE(data, measurevar, groupvars = c(betweenvars, 
-        withinvars), na.rm = na.rm, conf.interval = conf.interval)
-    mean.unadjust <- data.unadjust[, measurevar]
-    data[, measurevar] <- data[, measureNormedVar]
-    datac <- summarySE(data, measurevar, groupvars = c(betweenvars, 
-        withinvars), na.rm = na.rm, conf.interval = conf.interval)
-    nWithinGroups <- prod(sapply(datac[, withinvars, drop = FALSE], 
-        FUN = nlevels))
-    correctionFactor <- sqrt(nWithinGroups/(nWithinGroups - 1))
-    datac$sd <- datac$sd * correctionFactor
-    datac$se <- datac$se * correctionFactor
-    datac$ci <- datac$ci * correctionFactor
-    datac[[paste(measurevar, ".unadjusted", sep = "")]] <- mean.unadjust
-    return(datac)
-  }
+summarySEwithin(d, measurevar='dv',
+  withinvars='f.within', betweenvars='f.between',
+  idvar='subject')
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

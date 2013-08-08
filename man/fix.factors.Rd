@@ -1,9 +1,10 @@
 \name{fix.factors}
 \alias{fix.factors}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{fix.factors}
+\title{Clean up a data.frame}
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Prepare data frames for regression analysis. Remove unused levels of factors and move factors with 2 levels to deviation coding.
+To convert factors with > 2 levels to deviation coding, use the function deviation.code().
 }
 \usage{
 fix.factors(d)
@@ -11,18 +12,14 @@ fix.factors(d)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{d}{
-%%     ~~Describe \code{d} here~~
+a data.frame.
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+a data.frame
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -37,25 +34,20 @@ fix.factors(d)
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+deviation.code
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+f.1 <- factor(x=rep(c('a', 'b'), each=15), levels=c('a', 'b', 'c'))
+f.2 <- factor(x=rep(c('x', 'y', 'z'), each=10), levels=c('x', 'y', 'z'))
+d <- data.frame(f.1, f.2)
 
-## The function is currently defined as
-function (d) 
-{
-    dat <- d
-    for (field in names(dat)) {
-        if (is.factor(dat[, field])) 
-            dat[, field] <- factor(dat[, field][])
-        if (length(levels(dat[, field])) == 2) 
-            contrasts(dat[, field]) <- c(-0.5, 0.5)
-    }
-    return(dat)
-  }
+d.new <- fix.factors(d)
+
+summary(d)
+contrasts(d$f.1)
+
+summary(d.new)
+contrasts(d.new$f.1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

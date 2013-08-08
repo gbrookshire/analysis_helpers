@@ -1,10 +1,9 @@
 \name{merge.csv}
 \alias{merge.csv}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-merge.csvs}
+\title{Combine .csv files}
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Combine all .csv files in a single directory. Be sure to delete any old aggregated .csv files before running mrege.csv, or you'll end up duplicating those data points!
 }
 \usage{
 merge.csv(dirname, outputname = "all.csv", sep = ",", skip = 0)
@@ -12,27 +11,23 @@ merge.csv(dirname, outputname = "all.csv", sep = ",", skip = 0)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{dirname}{
-%%     ~~Describe \code{dirname} here~~
+Name of the directory containing the .csv files to be combined.
 }
   \item{outputname}{
-%%     ~~Describe \code{outputname} here~~
+Name of the output file to be written.
 }
   \item{sep}{
-%%     ~~Describe \code{sep} here~~
+Separator character. In normal csv's this is a comma (","), but it could be a tab ("\t") or anything else.
 }
   \item{skip}{
-%%     ~~Describe \code{skip} here~~
+Number of lines to skip at the top of each input file.
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Does not return anything. Instead, writes a .csv file.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -57,13 +52,13 @@ merge.csv(dirname, outputname = "all.csv", sep = ",", skip = 0)
 ## The function is currently defined as
 function (dirname, outputname = "all.csv", sep = ",", skip = 0) 
 {
-    print("This might sort the columns -- it's best to check that it doesn't.\n")
     setwd(dirname)
     filecont <- dir()
     filecont <- filecont[substr(filecont, nchar(filecont) - 3, 
         nchar(filecont)) == ".csv"]
     agg <- read.csv(filecont[1], sep = sep, skip = skip)
     filecont <- filecont[-1]
+    print(filecont[1])
     for (f in filecont) {
         print(f)
         d <- read.csv(f, sep = sep, skip = skip)

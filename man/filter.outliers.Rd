@@ -1,9 +1,9 @@
 \name{filter.outliers}
 \alias{filter.outliers}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{filter.outliers}
+\title{Remove outliers}
 \description{
-Return a data frame of same structure as input, but with outliers removed on a subject-wise basis.
+Remove the outliers from numeric data on a subject-wise basis.
 }
 \usage{
 filter.outliers(dat, DV, subject.names, sds)
@@ -11,13 +11,13 @@ filter.outliers(dat, DV, subject.names, sds)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{dat}{
-The full data.frame of your data.
+A data.frame.
 }
   \item{DV}{
-The name of the column containing your numerical dependent variable (character).
+The name of the column containing your numerical dependent variable (char).
 }
   \item{subject.names}{
-The name of the column containing subject names (char).
+The name of the column containing the subject names (char).
 }
   \item{sds}{
 The outer limit of retained observations in standard deviations (numeric). E.g. sds=3 will filter out any responses greater than 3*SD from the subject mean.
@@ -27,13 +27,12 @@ The outer limit of retained observations in standard deviations (numeric). E.g. 
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-Data.frame of the same structure as the input.
+data.frame with the same structure as the input.
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-Geoff Brookshire <g_b@cal.berkeley.edu>
 }
 \note{
 %%  ~~further notes~~

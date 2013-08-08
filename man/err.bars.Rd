@@ -7,6 +7,7 @@ Add error bars to a plot
 }
 \description{
 Add error bars to a plot.
+superpose.eb() was an old version of this function -- switch to err.bars.
 }
 \usage{
 err.bars(x, y, ebl, ebu = ebl, length = 0.08, ...)

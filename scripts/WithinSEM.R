@@ -1,4 +1,3 @@
-print("Slightly different from what we saw before because it uses the method in Morey (2008) and Cousineau (2005)")
 
 #################################################################################################################
 # These scripts from http://wiki.stdout.org/rcookbook/Graphs/Plotting%20means%20and%20error%20bars%20(ggplot2)  #
@@ -85,6 +84,9 @@ normDataWithin <- function(data=NULL, idvar, measurevar, betweenvars=NULL, na.rm
 ##   na.rm: a boolean that indicates whether to ignore NA's
 ##   conf.interval: the percent range of the confidence interval (default is 95%)
 summarySEwithin <- function(data=NULL, measurevar, betweenvars=NULL, withinvars=NULL, idvar=NULL, na.rm=FALSE, conf.interval=.95) {
+    
+    print("Slightly different from what we used to use because it uses the method in Morey (2008) and Cousineau (2005)")
+  
     # Norm each subject's data    
     data <- normDataWithin(data, idvar, measurevar, betweenvars, na.rm)
     
@@ -94,7 +96,7 @@ summarySEwithin <- function(data=NULL, measurevar, betweenvars=NULL, withinvars=
     # get an unadjusted mean for the groups -- GB
     data.unadjust <- summarySE(data, measurevar, groupvars=c(betweenvars, withinvars),
     						   na.rm=na.rm, conf.interval=conf.interval)
- 	mean.unadjust <- data.unadjust[, measurevar]
+ 	  mean.unadjust <- data.unadjust[, measurevar]
     
     # Replace the original data column with the normed one
     data[,measurevar] <- data[,measureNormedVar]
@@ -113,7 +115,7 @@ summarySEwithin <- function(data=NULL, measurevar, betweenvars=NULL, withinvars=
     datac$sd <- datac$sd * correctionFactor
     datac$se <- datac$se * correctionFactor
     datac$ci <- datac$ci * correctionFactor
-	datac[[paste(measurevar, '.unadjusted', sep='')]] <- mean.unadjust
+	  datac[[paste(measurevar, '.unadjusted', sep='')]] <- mean.unadjust
 
     return(datac)
 }

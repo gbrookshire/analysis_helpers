@@ -20,5 +20,5 @@ filter.outliers <- function(dat, DV, subject.names, sds) {
 		(d[[DV]] >= subj.means + sds*subj.sds) | 
 		(d[[DV]] <= subj.means - sds*subj.sds))
 	
-	return(subset(d, !filter))	
+	return(subset(d, !filter, drop=c('filter', 'subj.means', 'subj.sds')))	
 }

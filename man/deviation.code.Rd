@@ -1,33 +1,22 @@
-\name{superpose.eb}
-\alias{superpose.eb}
+\name{deviation.code}
+\alias{deviation.code}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-superpose.eb}
+Move a factor to deviation coding
+}
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-superpose.eb(x, y, ebl, ebu = ebl, length = 0.08, ...)
+deviation.code(recode.factor, baseline)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
+  \item{recode.factor}{
+%%     ~~Describe \code{recode.factor} here~~
 }
-  \item{y}{
-%%     ~~Describe \code{y} here~~
-}
-  \item{ebl}{
-%%     ~~Describe \code{ebl} here~~
-}
-  \item{ebu}{
-%%     ~~Describe \code{ebu} here~~
-}
-  \item{length}{
-%%     ~~Describe \code{length} here~~
-}
-  \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
+  \item{baseline}{
+%%     ~~Describe \code{baseline} here~~
 }
 }
 \details{
@@ -44,7 +33,7 @@ superpose.eb(x, y, ebl, ebu = ebl, length = 0.08, ...)
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+tom.gijssels@gmail.com
 }
 \note{
 %%  ~~further notes~~
@@ -61,9 +50,22 @@ superpose.eb(x, y, ebl, ebu = ebl, length = 0.08, ...)
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (x, y, ebl, ebu = ebl, length = 0.08, ...) 
-arrows(x, y + ebu, x, y - ebl, angle = 90, code = 3, length = length, 
-    ...)
+function (recode.factor, baseline) 
+{
+    k <- length(levels(recode.factor))
+    fact.lvl.names <- levels(recode.factor)
+    contr.lvls <- fact.lvl.names[fact.lvl.names != baseline]
+    dummy.mat <- matrix(nrow = k, ncol = k - 1, data = 0)
+    colnames(dummy.mat) <- contr.lvls
+    rownames(dummy.mat) <- fact.lvl.names
+    for (level in contr.lvls) {
+        dummy.mat[level, level] <- 1
+    }
+    new.coding <- matrix(rep(1/k, (k * (k - 1))), ncol = k - 
+        1)
+    dev.coding <- dummy.mat - new.coding
+    return(dev.coding)
+  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
