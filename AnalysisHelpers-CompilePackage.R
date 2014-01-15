@@ -3,7 +3,7 @@
 # update the man pages in the outer man directory, not analysisHelpers/man.
 
 rm(list=ls())
-script.dir <- "/Users/gbrookshire/Documents/programming/r/analysis_helpers/scripts/"
+script.dir <- "~/Documents/programming/r/analysis_helpers/scripts/"
 scrs <- c("FilterOutliers.R", "WithinSEM.R", "merge_csvs.R",
           "DataFrameMatrix.R", "FixFactors.R", "errbar.R", "deviation_code.R")
 

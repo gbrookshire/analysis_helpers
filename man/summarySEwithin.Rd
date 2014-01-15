@@ -19,10 +19,10 @@ a data frame.
 the name of a column that contains the variable to be summarized.
 }
   \item{betweenvars}{
-a vector containing names of columns that contain grouping variables.
+a vector containing names of columns that contain grouping variables. Leave blank (NULL) if there are none.
 }
   \item{withinvars}{
-a boolean that indicates whether to ignore NA's.
+the name of a column that contains the variable to be summarized.
 }
   \item{idvar}{
 %%     ~~Describe \code{idvar} here~~
