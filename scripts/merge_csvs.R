@@ -8,20 +8,24 @@ merge.csv <- function(dirname, outputname='all.csv', sep=',', skip=0) {
   # load it into R and then call it with the path of the directory
   # which holds the logfiles you want to merge.
   
+  sep.char <- sep
+  start.dir <- getwd()
   setwd(dirname)
   filecont <- dir()
   # only look at the .csv’s
   filecont <- filecont[substr(filecont, nchar(filecont)-3, nchar(filecont))=='.csv']
+  message(paste('Merging', as.character(length(filecont)), 'files.'))
   # first make a table to hold all the data, fill with first CSV
-  agg <- read.csv(filecont[1], sep=sep, skip=skip)
+  agg <- read.csv(filecont[1], sep=sep.char, skip=skip)
+  message(filecont[1])
   filecont <- filecont[-1]
-  print(filecont[1])
   for (f in filecont) {
-    print(f)   
-    d <- read.csv(f, sep=sep, skip=skip)
+    message(f)   
+    d <- read.csv(f, sep=sep.char, skip=skip)
     agg <- merge(agg, d, all=TRUE, sort=FALSE) # fill in blanks for absent rows
   }
-  write.csv(agg, outputname, row.names=FALSE, quote=FALSE)
+  write.table(agg, outputname, sep=sep.char, row.names=FALSE, quote=FALSE)
+  setwd(start.dir)
 }
 
 

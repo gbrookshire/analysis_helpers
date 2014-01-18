@@ -4,8 +4,8 @@
 
 rm(list=ls())
 script.dir <- "~/Documents/programming/r/analysis_helpers/scripts/"
-scrs <- c("FilterOutliers.R", "WithinSEM.R", "merge_csvs.R",
-          "DataFrameMatrix.R", "FixFactors.R", "errbar.R", "deviation_code.R")
+scrs <- dir(script.dir)
+print(scrs)
 
 setwd(paste(script.dir, '..', sep=''))
 

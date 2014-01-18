@@ -17,7 +17,7 @@ Name of the directory containing the .csv files to be combined.
 Name of the output file to be written.
 }
   \item{sep}{
-Separator character. In normal csv's this is a comma (","), but it could be a tab ("\t") or anything else.
+Separator character. In normal csv files this is a comma (","). The output file is also written with this separator.
 }
   \item{skip}{
 Number of lines to skip at the top of each input file.
@@ -33,8 +33,7 @@ Does not return anything. Instead, writes a .csv file.
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
-}
+Geoff Brookshire}
 \note{
 %%  ~~further notes~~
 }
@@ -45,27 +44,6 @@ Does not return anything. Instead, writes a .csv file.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (dirname, outputname = "all.csv", sep = ",", skip = 0) 
-{
-    setwd(dirname)
-    filecont <- dir()
-    filecont <- filecont[substr(filecont, nchar(filecont) - 3, 
-        nchar(filecont)) == ".csv"]
-    agg <- read.csv(filecont[1], sep = sep, skip = skip)
-    filecont <- filecont[-1]
-    print(filecont[1])
-    for (f in filecont) {
-        print(f)
-        d <- read.csv(f, sep = sep, skip = skip)
-        agg <- merge(agg, d, all = TRUE, sort = FALSE)
-    }
-    write.csv(agg, outputname, row.names = FALSE, quote = FALSE)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
