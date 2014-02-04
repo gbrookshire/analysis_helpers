@@ -40,7 +40,7 @@ last.build <- tail(grep('analysisHelpers', dir('.'), value=T), 1)
 system(paste('cp', last.build, '../builds/'))
 
 # and copy it into an analysisHelpers.tar.gz file
-system(paste('cp', last.build, '../current/version/analysisHelpers.tar.gz'))
+system(paste('cp', last.build, '../current_version/analysisHelpers.tar.gz'))
 
 # to install:
-# install.packages('path/to/package/analysisHelpers-V.V.tar.gz', repos=NULL, type='source')
+# install.packages('path/to/package/analysisHelpers.tar.gz', repos=NULL, type='source')
