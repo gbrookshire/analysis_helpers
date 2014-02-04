@@ -1,5 +1,5 @@
-A library of helper functions that might be useful for analyses of behavioral datasets in R. Install the most recent build in the builds/ directory like this:
+A library of helper functions that might be useful for analyses of behavioral datasets in R. Install the most recent build in the current_version/ directory like this:
 
-install.packages('PATH/TO/FILE/analysisHelpers...tar.gz', repos=NULL, type='source')
+install.packages('PATH/TO/FILE/analysisHelpers.tar.gz', repos=NULL, type='source')
 
 To contribute, alter the scripts in scripts/, and update the help documentation in man/. Then build into a packaged library by running AnalysisHelpers-CompilePackage.R.
