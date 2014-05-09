@@ -7,6 +7,8 @@ Simple functions for analyzing behavioral data.
 }
 \description{
 These functions are made to help out with common analysis steps in behavioral experiments.
+
+https://github.com/gbrookshire/analysis_helpers
 }
 \details{
 \tabular{ll}{
