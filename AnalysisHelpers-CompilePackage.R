@@ -3,9 +3,13 @@
 # update the man pages in the outer man directory, not analysisHelpers/man.
 
 rm(list=ls())
-script.dir <- "scripts/"
+start.dir <- getwd()
+script.dir <- paste(start.dir, "scripts/", sep='/')
 scrs <- dir(script.dir)
 print(scrs)
+
+# Clean out old R scripts to be sure we're using the new ones.
+system('rm -rf ./analysisHelpers/')
 
 package.skeleton('analysisHelpers',
                  code_files=paste(script.dir, scrs, sep=""),
@@ -21,7 +25,7 @@ description <- c(
   "Author: Geoff Brookshire and other Casasanto lab people",
   "Maintainer: Geoff Brookshire <g_b@cal.berkeley.edu>",
   "Description: See the individual functions for more about what they do.",
-  "License: None!")
+  "License: GLP-2")
 
 setwd('analysisHelpers')
 
@@ -37,8 +41,7 @@ system('R CMD build .')
 last.build <- tail(grep('analysisHelpers', dir('.'), value=T), 1)
 system(paste('cp', last.build, '../builds/'))
 
-# and copy it into an analysisHelpers.tar.gz file
-system(paste('cp', last.build, '../current_version/analysisHelpers.tar.gz'))
+setwd(start.dir)
 
 # to install:
 # install.packages('path/to/package/analysisHelpers.tar.gz', repos=NULL, type='source')
