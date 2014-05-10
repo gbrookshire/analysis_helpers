@@ -3,11 +3,9 @@
 # update the man pages in the outer man directory, not analysisHelpers/man.
 
 rm(list=ls())
-script.dir <- "~/Documents/programming/r/analysis_helpers/scripts/"
+script.dir <- "scripts/"
 scrs <- dir(script.dir)
 print(scrs)
-
-setwd(paste(script.dir, '..', sep=''))
 
 package.skeleton('analysisHelpers',
                  code_files=paste(script.dir, scrs, sep=""),
