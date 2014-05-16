@@ -11,8 +11,8 @@ merge.csv <- function(dirname, outputname, sep=',', skip=0) {
   filecont <- dir(dirname)
   # Strip out anything other than csv files
   filecont <- filecont[substr(filecont, nchar(filecont)-3, nchar(filecont))=='.csv']
-  # Add directory to each filename 
-  filecont <- paste(dirname, filecont, sep ='')
+  # Add directory to each filename
+  filecont <- paste(dirname, filecont, sep='/')
   message(paste('Merging', as.character(length(filecont)), 'files.'))
   # first make a table to hold all the data, fill with first CSV
   agg <- read.csv(filecont[1], sep=sep.char, skip=skip)
