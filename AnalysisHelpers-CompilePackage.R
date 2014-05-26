@@ -45,3 +45,4 @@ setwd(start.dir)
 
 # to install:
 # install.packages('path/to/package/analysisHelpers.tar.gz', repos=NULL, type='source')
+

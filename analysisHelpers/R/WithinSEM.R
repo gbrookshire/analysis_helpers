@@ -110,6 +110,7 @@ summarySEwithin <- function(data=NULL, measurevar, betweenvars=NULL, withinvars=
     #  Get the product of the number of conditions of within-S variables
     nWithinGroups    <- prod(sapply(datac[,withinvars, drop=FALSE],
                                     FUN=function(x) nlevels(factor(x))))
+    correctionFactor <- sqrt( nWithinGroups / (nWithinGroups-1) )
 
     # Apply the correction factor
     datac$sd <- datac$sd * correctionFactor

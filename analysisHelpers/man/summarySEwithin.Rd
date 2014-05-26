@@ -19,13 +19,13 @@ a data frame.
 the name of a column that contains the variable to be summarized.
 }
   \item{betweenvars}{
-a vector containing names of columns that contain grouping variables. Leave blank (NULL) if there are none.
+a vector containing names of columns of grouping variables (between subjects). Leave blank (NULL) if there are none.
 }
   \item{withinvars}{
-the name of a column that contains the variable to be summarized.
+a vector containing names of columns of within-subjects variables.
 }
   \item{idvar}{
-%%     ~~Describe \code{idvar} here~~
+the name of the column of subject identifiers.
 }
   \item{na.rm}{
 a boolean that indicates whether to ignore NA's.
