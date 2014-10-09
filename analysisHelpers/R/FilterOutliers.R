@@ -20,5 +20,13 @@ filter.outliers <- function(dat, DV, subject.names, sds) {
 		(d[[DV]] >= subj.means + sds*subj.sds) | 
 		(d[[DV]] <= subj.means - sds*subj.sds))
 	
-	return(subset(d, !filter, drop=c('filter', 'subj.means', 'subj.sds')))	
+  d <- subset(d, !filter)
+  # Delete some unnecessary columns.
+  d$filter <- NULL
+  d$subj.means <- NULL
+  d$subj.sds <- NULL
+  errors <- dim(dat) - dim(d)
+  error.rate <- (dim(dat) - dim(d)) / dim(dat)
+	message("Filtered out: " , errors[1], " trials = " , 100*round(error.rate[1], 5), "%")
+	return(d)
 }
