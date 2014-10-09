@@ -57,6 +57,7 @@ Geoff
 set.seed(10)
 x <- 1:20
 y <- (0.2 * x) + rnorm(20)
+plot(x, y)
 ConfIntLine(x, y)
 
 }
