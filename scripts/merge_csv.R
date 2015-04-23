@@ -22,7 +22,8 @@ merge.csv <- function(dirname, outputname, sep=',', skip=0) {
   for (f in filecont) {
     message(f)   
     d <- read.csv(f, sep=sep.char, skip=skip)
-    agg <- merge(agg, d, all=TRUE, sort=FALSE) # fill in blanks for absent rows
+#     agg <- merge(agg, d, all=TRUE, sort=FALSE) # fill in blanks for absent rows
+    agg <- rbind(agg, d)
   }
   
   # If outputname was passed in, write out the merged csv data to that filename
