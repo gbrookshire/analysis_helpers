@@ -3,7 +3,8 @@
 # update the man pages in the outer man directory, not analysisHelpers/man.
 
 rm(list=ls())
-start.dir <- getwd()
+start.dir <- '~/Documents/programming/r/analysis_helpers/'
+setwd(start.dir)
 script.dir <- paste(start.dir, "scripts/", sep='/')
 scrs <- dir(script.dir)
 print(scrs)
