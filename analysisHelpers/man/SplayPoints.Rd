@@ -2,7 +2,7 @@
 \alias{SplayPoints}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+A function to make points for 1D data with duplicates.
 }
 \description{
 Draw points for one-dimensional with duplicated values adjacent to each other
