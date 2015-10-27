@@ -1,4 +1,4 @@
-merge.csv <- function(dirname, outputname, sep=',', skip=0) {
+merge.csv <- function(dirname, outputname, regex=NULL, sep=',', skip=0) {
   # Reads in all the csvs in directory dirname, merges them, and quietly returns
   # them as a dataframe. If outputname is passed in, it will also write a merged
   # csv file to the current working directory.
@@ -11,6 +11,10 @@ merge.csv <- function(dirname, outputname, sep=',', skip=0) {
   filecont <- dir(dirname)
   # Strip out anything other than csv files
   filecont <- filecont[substr(filecont, nchar(filecont)-3, nchar(filecont))=='.csv']
+  # Specify which files to keep with a regular expression
+  if (!is.null(regex)){
+    filecont <- grep(regex, filecont, value=TRUE)
+  }
   # Add directory to each filename
   filecont <- paste(dirname, filecont, sep='/')
   message(paste('Merging', as.character(length(filecont)), 'files.'))
