@@ -13,11 +13,11 @@ merge.csv(dirname, outputname, sep = ",", skip = 0)
   \item{dirname}{
 Name of the directory containing the .csv files to be combined.
 }
+  \item{filenames}{
+A character vector of names of individual files to be read in.
+  }
   \item{outputname}{
 A filename can be passed in here to optionally ouput a merged csv file.
-}
-  \item{regex}{
-Use a regular expression here to filter out some of the files in a directory.  
 }
   \item{sep}{
 Separator character, defaults to the csv standard ",". The output file is also written with this separator.
