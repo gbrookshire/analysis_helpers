@@ -4,6 +4,7 @@
 \title{
 normDataWithin}
 \description{
+Used by summarySEwithin - don't call this function directly.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{

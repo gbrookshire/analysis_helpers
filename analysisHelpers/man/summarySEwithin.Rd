@@ -5,7 +5,8 @@
 Compute within-subjects standard errors
 }
 \description{
-Get within-subjects standard error of the mean, count, mean, standard deviation, and confidence interval (default 95\%) for a numeric variable.
+Get within-subjects standard error of the mean, count, mean, standard deviation, and confidence interval (default 95\%) for a numeric variable. Uses the method from Morey (2008).
+
 }
 \usage{
 summarySEwithin(data = NULL, measurevar, betweenvars = NULL, withinvars = NULL, idvar = NULL, na.rm = FALSE, conf.interval = 0.95)

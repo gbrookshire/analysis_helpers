@@ -85,8 +85,6 @@ normDataWithin <- function(data=NULL, idvar, measurevar, betweenvars=NULL, na.rm
 ##   conf.interval: the percent range of the confidence interval (default is 95%)
 summarySEwithin <- function(data=NULL, measurevar, betweenvars=NULL, withinvars=NULL, idvar=NULL, na.rm=FALSE, conf.interval=.95) {
     
-    print("Slightly different from what we used to use because it uses the method in Morey (2008) and Cousineau (2005)")
-  
     # Norm each subject's data    
     data <- normDataWithin(data, idvar, measurevar, betweenvars, na.rm)
     
