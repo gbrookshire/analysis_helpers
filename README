@@ -6,7 +6,7 @@ You can install in one of two ways:
 
 2) Using the install_github() function from the devtools library:
 library(devtools)
-install_github(repo='analysis_helpers', username='gbrookshire', subdir='analysisHelpers')
+install_github("gbrookshire/analysis_helpers", subdir='analysisHelpers')
 
 To contribute, alter the scripts in scripts/, and update the help documentation in man/. Then build into a packaged library by running AnalysisHelpers-CompilePackage.R. The present build is contained in the analysisHelpers/ directory.
 The github page is found at https://github.com/gbrookshire/analysis_helpers.
